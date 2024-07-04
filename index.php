@@ -13,7 +13,44 @@
 </head>
 
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-mid-push-2 col-mid-8">
+        <h2>Chat Application</h2>
+        <h3>Messages</h3>
+        <ul class="message-list">
 
+        </ul>
+        <form action="">
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea type="button" name="message" class="form-control" id="message_input"></textarea>
+          </div>
+          <div>
+            <button type="submit" name="button" class="btn btn-primary mt-2">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Create a new WebSocket object and connect it to the server
+    const conn = new WebSocket("ws://localhost:8080")
+    // Event handler when the WebSocket connection is successfully established  
+    conn.onopen = function(e) {
+      console.log("Connection established !");
+      // Send a message to the server
+      conn.send("message send from browser client");
+    }
+    // Event handler when a message is received from the server
+    conn.onmessage = function(e) {
+      console.log("Message: " + e.data);
+      let ul_list = document.querySelector(".message-list")
+      let li = document.createElement("li");
+      li.innerHTML = e.data;
+      ul_list.appendChild(li);
+    }
+  </script>
 </body>
 
 <!-- jquery js link -->
