@@ -6,10 +6,9 @@
       <div class="col-mid-push-2 col-mid-8">
         <h2>Chat Application</h2>
         <h3>Messages</h3>
-        <ul class="message-list">
-
+        <ul class="message_list">
         </ul>
-        <form action="">
+        <form action="" id="message_form">
           <div class="form-group">
             <label for="message">Message</label>
             <textarea type="button" name="message" class="form-control" id="message_input"></textarea>
