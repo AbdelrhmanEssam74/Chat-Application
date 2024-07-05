@@ -11,14 +11,29 @@ $(document).ready(function () {
     var message = messageInput.val();
     // Send a message to the server
     conn.send(message);
-    messagesList.prepend("<li>" + "You: " + message + "</li>");
+    messagesList.prepend(
+      "<li class='my-message'>" + "You: " + message + "</li>"
+    );
   });
   conn.onopen = function (e) {
     console.log("Connection established !");
+    $.ajax({
+      url: "/history_load.php",
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        $.each(data, function () {
+          var li = $("<li>").addClass("other-message").text(this.text);
+          messagesList.append(li)
+        });
+      },
+    });
   };
   // Event handler when a message is received from the server
   conn.onmessage = function (e) {
     console.log("Message: " + e.data);
-    messagesList.prepend("<li>" + "Other Client: " + e.data + "</li>");
+    messagesList.prepend(
+      "<li class='other-message'>" + "Other Client: " + e.data + "</li>"
+    );
   };
 });

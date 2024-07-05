@@ -3,7 +3,7 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-mid-push-2 col-mid-8">
+      <div class="col-lg-6  col-mid-12">
         <h2>Chat Application</h2>
         <h3>Messages</h3>
         <ul class="message_list">
@@ -14,7 +14,7 @@
             <textarea type="button" name="message" class="form-control" id="message_input"></textarea>
           </div>
           <div>
-            <button type="submit" name="button" class="btn btn-primary mt-2">Send</button>
+            <button type="submit" name="button" class="btn btn-primary mt-2">  <i class="fa-solid fa-paper-plane"></i></button>
           </div>
         </form>
       </div>
