@@ -10,11 +10,25 @@ $(document).ready(function () {
     usernameInput = $(".username-input");
   form.on("submit", function (e) {
     e.preventDefault();
-    var message = messageInput.val();
+    /**
+     * make an object containing
+     * message text
+     * sender
+     * type
+     */
+    var message = {
+      text: messageInput.val(),
+      sender: $.cookie("chat_name"),
+      type: "message",
+    };
     // Send a message to the server
-    conn.send(message);
+    conn.send(JSON.stringify(message));
     messagesList.prepend(
-      "<li class='my-message'>" + "You: " + message + "</li>"
+      "<li class='my-message'>" +
+        $.cookie("chat_name") +
+        ": " +
+        message.text +
+        "</li>"
     );
   });
   // Event handler for submitting the username form
@@ -30,6 +44,7 @@ $(document).ready(function () {
   });
   // Event handler when the WebSocket connection is successfully established
   conn.onopen = function (e) {
+    console.log(e);
     // Load message history from the server using AJAX
     $.ajax({
       url: "/history_load.php",
@@ -37,7 +52,9 @@ $(document).ready(function () {
       success: function (data) {
         // Iterate over the retrieved messages and append them to the message list
         $.each(data, function () {
-          var li = $("<li>").addClass("other-message").text(this.text);
+          var li = $("<li>")
+            .addClass("other-message")
+            .text(this.sender + " : " + this.text);
           messagesList.append(li);
         });
       },

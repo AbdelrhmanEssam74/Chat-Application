@@ -36,16 +36,24 @@ class Chat implements MessageComponentInterface
    */
   public function onMessage(ConnectionInterface $from, $message)
   {
-    echo $message;
-    foreach ($this->clients as $client) : // for each through all the clients that are currently connected in the server and send a message 
-      if ($client !== $from) :
-        $client->send($message);
-      endif;
-    endforeach;
-    // store the message in the DB
-    message::create([
-      "text" => $message
-    ]);
+    $message = json_decode($message);
+    switch ($message->type) {
+      case 'message':
+        foreach ($this->clients as $client) : // for each through all the clients that are currently connected in the server and send a message 
+          if ($client !== $from) :
+            $client->send($message->text);
+          endif;
+        endforeach;
+        // store the message in the DB
+        message::create([
+          "text" => $message->text,
+          "sender" => $message->sender
+        ]);
+        break;
+      default:
+        # code...
+        break;
+    }
   }
 
   /**
