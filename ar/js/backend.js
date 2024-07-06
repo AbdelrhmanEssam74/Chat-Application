@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+  /*
   // Create a new WebSocket object and connect it to the server
   const conn = new WebSocket("ws://localhost:8080");
   // Event handler when the WebSocket connection is successfully established
@@ -10,12 +12,12 @@ $(document).ready(function () {
     usernameInput = $(".username-input");
   form.on("submit", function (e) {
     e.preventDefault();
-    /**
-     * make an object containing
-     * message text
-     * sender
-     * type
-     */
+    
+    //  * make an object containing
+    //  * message text
+    //  * sender
+    //  * type
+    
     var message = {
       text: messageInput.val(),
       sender: $.cookie("chat_name"),
@@ -74,4 +76,5 @@ $(document).ready(function () {
       "<li class='other-message'>" + "Other Client: " + e.data + "</li>"
     );
   };
+  */
 });
