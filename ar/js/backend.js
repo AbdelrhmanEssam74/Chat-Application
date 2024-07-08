@@ -1,4 +1,53 @@
 $(document).ready(function () {
+  /*
+   * Registration
+   * Get All register form inputs value, validate them and send them to the server
+   */
+  $("#register-form").submit(function (e) {
+    e.preventDefault();
+    var form = $(this);
+    var formData = {
+      username: $("#username").val(),
+      password: $("#password").val(),
+      email: $("#email").val(),
+    };
+
+    var isValid = true;
+
+    $.each(formData, function (index, value) {
+      if (value === "") {
+        $("#" + index).css("border-color", "red");
+        $("#" + index).addClass("invalid");
+        let parent = $("#" + index).parent();
+        parent.append(
+          "<span class='invalidFeedback'>* This field is required</span>"
+        );
+        isValid = false;
+      } else {
+        $("#" + index).css("border-color", "green");
+        $("#" + index).removeClass("invalid");
+        $("#" + index)
+          .parent()
+          .find(".invalidFeedback")
+          .remove();
+      }
+    });
+
+    if (isValid) {
+      var formURL = form.attr("action");
+      $.ajax({
+        url: formURL,
+        type: "POST",
+        data: formData,
+        success: function (data) {
+          console.log(data);
+          if (data == "success") {
+          } else {
+          }
+        },
+      });
+    }
+  });
 
   /*
   // Create a new WebSocket object and connect it to the server

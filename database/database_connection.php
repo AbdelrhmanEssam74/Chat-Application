@@ -1,6 +1,6 @@
 <?php
 //NOTE - Database Connection
-final class database_connection
+class database_connection
 {
   private $host = "localhost";
   private $username = "Admin1";

@@ -8,52 +8,94 @@
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  -font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-
+:root {
+  --main-color: #345048;
+  --secondary-color: #547d63;
+  --third-color: #8ca989;
+  --Clay-Ash: #bdcaba;
+  --Mercury: #e6e6e6;
+  --gray: #777;
+  --primary-color: #f1c40f;
+}
+a {
+  text-decoration: none;
+}
 body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   font-weight: 100;
   font-size: 12px;
   line-height: 30px;
   color: #777;
-  background: #ebfef5;
+  background: var(--Mercury);
 }
 
 .container {
-  height: 100vh;
+  height: 85.7vh;
   width: 100%;
-  margin: 0 auto;
   position: relative;
+}
+.form {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#contact input[type="text"],
-#contact input[type="email"],
-#contact input[type="password"],
-#contact button[type="submit"] {
-  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
-}
-
-#contact {
-  background: #F9F9F9;
+#login-form,
+#register-form {
+  background: #f9f9f9;
   padding: 25px;
   margin: 15px 0;
-  width: 35%;
+  width: 80%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-
-#contact h3 {
-  display: block;
-  font-size: 30px;
-  font-weight: 300;
-  margin-bottom: 10px;
+#register-form input[type="text"],
+#register-form input[type="email"],
+#register-form input[type="password"],
+#register-form button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
+#login-from input[type="email"],
+#login-from input[type="password"],
+#login-from button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
+/*Small*/
+@media (min-width: 786px) {
+  #login-form,
+  #register-form {
+    width: 80%;
+  }
+}
+/*Medium*/
+@media (min-width: 992px) {
+  #login-form,
+  #register-form {
+    width: 35%;
+  }
 }
 
-#contact h4 {
+/*larger*/
+@media (min-width: 1200px) {
+  #login-form,
+  #register-form {
+    width: 35%;
+  }
+}
+#login-form h3,
+#register-form h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--main-color);
+}
+#login-form h4,
+#register-form h4 {
   margin: 5px 0 15px;
   display: block;
   font-size: 13px;
@@ -62,60 +104,72 @@ body {
 
 fieldset {
   border: medium none !important;
-  margin: 0 0 10px;
+  margin: 0 0 20px;
   min-width: 100%;
   padding: 0;
   width: 100%;
+  position: relative;
 }
-
-#contact input[type="text"],
-#contact input[type="email"],
-#contact input[type="password"],
-#contact input[type="url"],
-#contact textarea {
+#register-form input[type="text"],
+#register-form input[type="email"],
+#register-form input[type="password"],
+#register-form textarea {
   width: 100%;
   border: 1px solid #ccc;
-  background: #FFF;
+  background: #fff;
   margin: 0 0 5px;
   padding: 10px;
 }
 
-#contact input[type="text"]:hover,
-#contact input[type="email"]:hover,
-#contact input[type="password"]:hover,
-#contact input[type="url"]:hover,
-#contact textarea:hover {
+#register-form input[type="text"]:hover,
+#register-form input[type="email"]:hover,
+#register-form input[type="password"]:hover,
+#register-form textarea:hover {
   -webkit-transition: border-color 0.3s ease-in-out;
   -moz-transition: border-color 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out;
   border: 1px solid #aaa;
 }
-
-#contact textarea {
-  height: 100px;
-  max-width: 100%;
-  resize: none;
+#login-form input[type="email"],
+#login-form input[type="password"],
+#login-form textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #fff;
+  margin: 0 0 5px;
+  padding: 10px;
 }
 
-#contact button[type="submit"] {
+#login-form input[type="email"]:hover,
+#login-form input[type="password"]:hover,
+#login-form textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+#login-form button[type="submit"],
+#register-form button[type="submit"] {
   cursor: pointer;
   width: 100%;
   border: none;
   background: #00543e;
-  color: #FFF;
+  color: #fff;
   margin: 0 0 5px;
   padding: 10px;
   font-size: 15px;
 }
 
-#contact button[type="submit"]:hover {
+#login-form button[type="submit"]:hover,
+#register-form button[type="submit"]:hover {
   background: #002f24;
   -webkit-transition: background 0.3s ease-in-out;
   -moz-transition: background 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
 }
 
-#contact button[type="submit"]:active {
+#login-form button[type="submit"]:active,
+#register-form button[type="submit"]:active {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -123,8 +177,10 @@ fieldset {
   text-align: center;
 }
 
-#contact input:focus,
-#contact textarea:focus {
+#login-form input:focus,
+#login-form textarea:focus,
+#register-form input:focus,
+#register-form textarea:focus {
   outline: 0;
   border: 1px solid #aaa;
 }
@@ -144,3 +200,51 @@ fieldset {
 :-ms-input-placeholder {
   color: #888;
 }
+/* footer section start */
+.copy-right-sec {
+  padding: 0.8rem;
+  background: var(--Clay-Ash);
+  color: var(--main-color);
+  text-align: center;
+}
+.copy-right-sec span {
+  color: #b23f0d;
+  margin-left: 2px;
+  font-weight: 600;
+}
+.icons {
+  font-size: 20px;
+}
+.icons > * {
+  margin: 0 8px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  padding: 7px;
+  border-radius: 5px;
+  color: var(--main-color);
+}
+.icons .linkedin:hover {
+  color: #0077b5;
+  background-color: #eee;
+}
+.icons .github:hover {
+  color: #333;
+  background-color: #eee;
+}
+.icons .gmail:hover {
+  color: #3e65cf;
+  background-color: #eee;
+}
+/* footer section end */
+/* start validate */
+.invalidFeedback {
+  position: absolute;
+  left: 0;
+  bottom: -40%;
+  color: #ff0505;
+  margin: 0px 0px -3px 0px;
+}
+.invalid::placeholder {
+  color: #ff0505;
+}
+/* end validate */
