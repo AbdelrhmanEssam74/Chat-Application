@@ -21,9 +21,9 @@ class ChatUser extends database_connection
     $this->connect = $database_obj->connect();
   }
 
-  public function setUserId($userId)
+  public function setUserId()
   {
-    $this->userId = $userId;
+    $this->userId = uniqid();
   }
 
   public function getUserId()
@@ -53,7 +53,7 @@ class ChatUser extends database_connection
 
   public function setUserPassword($userPassword)
   {
-    $this->userPassword = $userPassword;
+    $this->userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
   }
 
   public function getUserPassword()
@@ -109,5 +109,57 @@ class ChatUser extends database_connection
   public function getUserLoginStatus()
   {
     return $this->userLoginStatus;
+  }
+  // method to make a specific avatar for the user
+  // function make_avatar($character)
+  // {
+  //   $path = "images/" . time() . ".png";
+  //   $image = imagecreate(200, 200);
+  //   $red = rand(0, 255);
+  //   $green = rand(0, 255);
+  //   $blue = rand(0, 255);
+  //   imagecolorallocate($image, $red, $green, $blue);
+  //   $textcolor = imagecolorallocate($image, 255, 255, 255);
+
+  //   $font = dirname(__FILE__) . '/font/arial.ttf';
+
+  //   imagettftext($image, 100, 0, 55, 150, $textcolor, $font, $character);
+  //   imagepng($image, $path);
+  //   imagedestroy($image);
+  //   return $path;
+  // }
+  function get_user_data_by_email()
+  {
+    $query = "
+		SELECT * FROM chat_user_table 
+		WHERE user_email = :user_email
+		";
+
+    $statement = $this->connect->prepare($query);
+
+    $statement->bindParam(':user_email', $this->userEmail);
+
+    if ($statement->execute()) {
+      $user_data = $statement->fetch(PDO::FETCH_ASSOC);
+    }
+    return $user_data;
+  }
+  function save_data()
+  {
+    $query = "
+		INSERT INTO chat_user_table (user_id , username, user_email, user_password, user_profile, user_status, user_created_on, user_verification_code) 
+		VALUES ( :id , :user_name, :user_email, :user_password, :user_profile, :user_status, :user_created_on, :user_verification_code)
+		";
+    $statement = $this->connect->prepare($query);
+
+    $statement->bindParam(':id', $this->userId);
+    $statement->bindParam(':user_name', $this->username);
+    $statement->bindParam(':user_email', $this->userEmail);
+    $statement->bindParam(':user_password', $this->userPassword);
+    $statement->bindParam(':user_profile', $this->userProfile);
+    $statement->bindParam(':user_status', $this->userStatus);
+    $statement->bindParam(':user_created_on', $this->userCreatedOn);
+    $statement->bindParam(':user_verification_code', $this->userVerificationCode);
+    return $statement->execute();
   }
 }

@@ -3,6 +3,7 @@
 
 <body>
   <div class="container">
+    <div class="notifications"></div>
     <div class="form">
       <form id="register-form" action="<?php echo $authentication ?>register.php" method="post">
         <h3>Chat Application</h3>
@@ -23,6 +24,7 @@
       </form>
     </div>
   </div>
+
 </body>
 
 <?php include $templates . 'footer.php' ?>

@@ -3,6 +3,7 @@ $(document).ready(function () {
    * Registration
    * Get All register form inputs value, validate them and send them to the server
    */
+
   $("#register-form").submit(function (e) {
     e.preventDefault();
     var form = $(this);
@@ -41,8 +42,37 @@ $(document).ready(function () {
         data: formData,
         success: function (data) {
           console.log(data);
-          if (data == "success") {
+          data = JSON.parse(data);
+          if (data.success == true) {
+            createToast(
+              data.response_type,
+              "fa-solid fa-circle-check",
+              "Success",
+              data.message
+            );
+            setInterval(() => {
+              console.log("end");
+            }, 5000);
           } else {
+            createToast(
+              data.response_type,
+              "fa-solid fa-circle-exclamation",
+              "Failed",
+              data.message
+            );
+          }
+          if (data.sendMail == true) {
+            $("#register-form")
+              .prepend()
+              .addClass("alert alert-primary verification_alert")
+              .text(data.sending_mail_message);
+          }
+          if (data.response_type == "warning") {
+            $("#register-form");
+            let p = $("<p>")
+              .text(data.message)
+              .addClass("alert alert-warning ");
+            $("#register-form").prepend(p);
           }
         },
       });
@@ -127,3 +157,48 @@ $(document).ready(function () {
   };
   */
 });
+
+let notifications = document.querySelector(".notifications");
+
+function createToast(type, icon, title, text) {
+  let newToast = document.createElement("div");
+  newToast.innerHTML = `
+            <div class="Toast ${type}">
+                <i class="${icon}"></i>
+                <div class="content">
+                    <div class="title">${title}</div>
+                    <span>${text}</span>
+                </div>
+                <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
+            </div>`;
+  notifications.appendChild(newToast);
+  newToast.timeOut = setTimeout(() => newToast.remove(), 5000);
+}
+// success.onclick = function () {
+//   let type = "success";
+//   let icon = "fa-solid fa-circle-check";
+//   let title = "Success";
+//   let text = "This is a success toast.";
+//   createToast(type, icon, title, text);
+// };
+// error.onclick = function () {
+//   let type = "error";
+//   let icon = "fa-solid fa-circle-exclamation";
+//   let title = "Error";
+//   let text = "This is a error toast.";
+//   createToast(type, icon, title, text);
+// };
+// warning.onclick = function () {
+//   let type = "warning";
+//   let icon = "fa-solid fa-triangle-exclamation";
+//   let title = "Warning";
+//   let text = "This is a warning toast.";
+//   createToast(type, icon, title, text);
+// };
+// info.onclick = function () {
+//   let type = "info";
+//   let icon = "fa-solid fa-circle-info";
+//   let title = "Info";
+//   let text = "This is a info toast.";
+//   createToast(type, icon, title, text);
+// };

@@ -18,7 +18,10 @@
   --Clay-Ash: #bdcaba;
   --Mercury: #e6e6e6;
   --gray: #777;
-  --primary-color: #f1c40f;
+  --success: #0abf30;
+  --danger: #ff5939;
+  --warring: #e9bd0c;
+  --info: #3498db;
 }
 a {
   text-decoration: none;
@@ -33,13 +36,12 @@ body {
 }
 
 .container {
-  height: 85.7vh;
   width: 100%;
   position: relative;
 }
 .form {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +52,7 @@ body {
   background: #f9f9f9;
   padding: 25px;
   margin: 15px 0;
-  width: 80%;
+  width: 60%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 #register-form input[type="text"],
@@ -68,14 +70,14 @@ body {
 @media (min-width: 786px) {
   #login-form,
   #register-form {
-    width: 80%;
+    width: 60%;
   }
 }
 /*Medium*/
 @media (min-width: 992px) {
   #login-form,
   #register-form {
-    width: 35%;
+    width: 60%;
   }
 }
 
@@ -83,7 +85,7 @@ body {
 @media (min-width: 1200px) {
   #login-form,
   #register-form {
-    width: 35%;
+    width: 50%;
   }
 }
 #login-form h3,
@@ -200,6 +202,136 @@ fieldset {
 :-ms-input-placeholder {
   color: #888;
 }
+
+/* start validate */
+.invalidFeedback {
+  position: absolute;
+  left: 0;
+  bottom: -40%;
+  color: #ff0505;
+  margin: 0px 0px -3px 0px;
+}
+.invalid::placeholder {
+  color: #ff0505;
+}
+/* end validate */
+/* start notifications */
+.notifications {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+}
+.Toast {
+  position: relative;
+  padding: 10px;
+  color: #fff;
+  margin-bottom: 10px;
+  width: 300px;
+  display: grid;
+  grid-template-columns: 70px 1fr 70px;
+  border-radius: 5px;
+  background: rgb(22, 119, 52);
+  background: linear-gradient(
+    90deg,
+    rgba(22, 119, 52, 1) 0%,
+    rgba(0, 204, 44, 1) 50%,
+    rgba(11, 221, 116, 1) 100%
+  );
+  animation: show 0.3s ease 1 forwards;
+}
+.Toast svg {
+  color: var(--success);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  bottom: -15px;
+  position: relative;
+  color: #fff;
+  left: 0;
+}
+.notifications .content {
+  width: 196px;
+  position: relative;
+  left: -32px;
+}
+.Toast svg.fa-xmark {
+  right: -30px;
+  cursor: pointer;
+}
+.Toast .title {
+  font-size: x-large;
+  font-weight: 400;
+}
+.Toast span,
+.Toast i:nth-child(3) {
+  color: #fff;
+  font-weight: 300;
+}
+@keyframes show {
+  0% {
+    transform: translateX(100%);
+  }
+  40% {
+    transform: translateX(-5%);
+  }
+  80% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-10%);
+  }
+}
+.Toast::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--main-color);
+  width: 100%;
+  height: 3px;
+  content: "";
+  box-shadow: 0 0 10px var(--main-color);
+  animation: timeOut 5s linear 1 forwards;
+}
+@keyframes timeOut {
+  to {
+    width: 0;
+  }
+}
+.Toast.error {
+  background: rgb(105, 35, 22);
+  background: linear-gradient(
+    90deg,
+    rgba(105, 35, 22, 1) 0%,
+    rgba(242, 89, 60, 1) 52%,
+    rgba(255, 118, 91, 1) 100%
+  );
+}
+.Toast.warning {
+  background: rgb(144, 115, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(144, 115, 0, 1) 0%,
+    rgba(233, 189, 12, 1) 52%,
+    rgba(255, 230, 129, 1) 100%
+  );
+}
+.Toast.info {
+  background: rgb(24, 75, 108);
+  background: linear-gradient(
+    90deg,
+    rgba(24, 75, 108, 1) 0%,
+    rgba(52, 152, 219, 1) 52%,
+    rgba(119, 201, 255, 1) 100%
+  );
+}
+/* end notifications */
+/* start verification */
+.verification_alert{
+  font-size: 16px;
+}
+/* end verification */
+
 /* footer section start */
 .copy-right-sec {
   padding: 0.8rem;
@@ -236,15 +368,3 @@ fieldset {
   background-color: #eee;
 }
 /* footer section end */
-/* start validate */
-.invalidFeedback {
-  position: absolute;
-  left: 0;
-  bottom: -40%;
-  color: #ff0505;
-  margin: 0px 0px -3px 0px;
-}
-.invalid::placeholder {
-  color: #ff0505;
-}
-/* end validate */

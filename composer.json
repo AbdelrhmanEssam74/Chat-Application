@@ -2,7 +2,8 @@
     "require": {
         "cboden/ratchet": "^0.4.4",
         "illuminate/database": "^11.14",
-        "illuminate/events": "^11.14"
+        "illuminate/events": "^11.14",
+        "phpmailer/phpmailer": "^6.9"
     },
     "autoload": {
       "psr-4": {
