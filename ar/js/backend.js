@@ -161,7 +161,7 @@ $(document).ready(function () {
             );
             setInterval(() => {
               location.href = data.URL;
-            }, 5000);
+            }, 3000);
           }
           if (data.response_type == "error") {
             $("#login-form");
