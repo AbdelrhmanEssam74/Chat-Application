@@ -21,13 +21,9 @@ class ChatUser extends database_connection
     $this->connect = $database_obj->connect();
   }
 
-  public function setUserId($userid = null)
+  public function setUserId()
   {
-    if ($userid == null) {
-      $this->userId = uniqid();
-    } else {
-      $this->userId = $userid;
-    }
+    $this->userId = uniqid();
   }
 
   public function getUserId()
@@ -220,22 +216,5 @@ class ChatUser extends database_connection
     } else {
       return false;
     }
-  }
-  /**
-   * Summary of update_user_login_data
-   * update user login status 
-   * @return bool
-   */
-  function update_user_login_data()
-  {
-    $query = "
-		UPDATE chat_user_table 
-		SET user_login_status = :user_login_status 
-		WHERE user_id = :user_id
-		";
-    $statement = $this->connect->prepare($query);
-    $statement->bindParam(':user_login_status', $this->userLoginStatus);
-    $statement->bindParam(':user_id', $this->userId);
-    return $statement->execute();
   }
 }
