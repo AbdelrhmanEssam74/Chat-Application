@@ -51,7 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $sending_mail_message = 'Verification Email sent to ' . $user_object->getUserEmail() . ', so before login first verify your email';
       $response = array('response_type' => 'success', 'success' => true, 'message' => "Successful Registration", 'sending_mail_message' => $sending_mail_message, 'sendMail' => true);
       // set session values
+      $_SESSION['username'] = $user_object->getUserName();
       $_SESSION['email'] = $user_object->getUserEmail();
+      $_SESSION['password'] = $user_object->getUserPassword();
+      $_SESSION['userID'] = $user_object->getUserId();
     } else {
       $response = array('response_type' => 'error', 'error' => false, 'message' => 'Failed Registration Try Again!');
     }
