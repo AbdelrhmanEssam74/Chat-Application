@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $mail->Body = '
             <p>Thank you for registering for Chat Application Demo.</p>
                 <p>This is a verification email, please click the link to verify your email address.</p>
-                <p><a href="http://localhost:3000/verify.php?code=' . $user_object->getUserVerificationCode() . '">Click to Verify</a></p>
+                <p><a href="http://localhost/Chat-Application/verify.php?code=' . $user_object->getUserVerificationCode() . '">Click to Verify</a></p>
                 <p>Thank you...</p>
             ';
       $mail->send();
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $response = array('response_type' => 'error', 'error' => false, 'message' => 'Failed Registration Try Again!');
     }
   }
-
+  echo "dsf";
   // Return response
   echo json_encode($response);
 }
