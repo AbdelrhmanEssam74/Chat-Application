@@ -52,7 +52,7 @@ body {
   background: #f9f9f9;
   padding: 25px;
   margin: 15px 0;
-  width: 60%;
+  width: 90%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 #register-form input[type="text"],
@@ -121,6 +121,7 @@ fieldset {
   background: #fff;
   margin: 0 0 5px;
   padding: 10px;
+  font-size: 15px;
 }
 
 #register-form input[type="text"]:hover,
@@ -140,6 +141,7 @@ fieldset {
   background: #fff;
   margin: 0 0 5px;
   padding: 10px;
+  font-size: 15px;
 }
 
 #login-form input[type="email"]:hover,

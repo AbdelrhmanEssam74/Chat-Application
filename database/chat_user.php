@@ -128,6 +128,10 @@ class ChatUser extends database_connection
   //   imagedestroy($image);
   //   return $path;
   // }
+  /**
+   * Summary of get_user_data_by_email
+   * @return mixed
+   */
   function get_user_data_by_email()
   {
     $query = "
@@ -144,6 +148,10 @@ class ChatUser extends database_connection
     }
     return $user_data;
   }
+  /**
+   * Summary of save_data
+   * @return bool
+   */
   function save_data()
   {
     $query = "
@@ -161,5 +169,52 @@ class ChatUser extends database_connection
     $statement->bindParam(':user_created_on', $this->userCreatedOn);
     $statement->bindParam(':user_verification_code', $this->userVerificationCode);
     return $statement->execute();
+  }
+  /**
+   * Summary of is_valid_email_verification_code
+   * @return bool
+   */
+  function is_valid_email_verification_code()
+  {
+    $query = "
+		SELECT * FROM chat_user_table 
+		WHERE user_verification_code = :user_verification_code
+		";
+
+    $statement = $this->connect->prepare($query);
+
+    $statement->bindParam(':user_verification_code', $this->userVerificationCode);
+
+    $statement->execute();
+
+    if ($statement->rowCount() > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  /**
+   * Summary of enable_user_account
+   * @return bool
+   */
+  function enable_user_account()
+  {
+    $query = "
+		UPDATE chat_user_table 
+		SET user_status = :user_status 
+		WHERE user_verification_code = :user_verification_code
+		";
+
+    $statement = $this->connect->prepare($query);
+
+    $statement->bindParam(':user_status', $this->userStatus);
+
+    $statement->bindParam(':user_verification_code', $this->userVerificationCode);
+
+    if ($statement->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

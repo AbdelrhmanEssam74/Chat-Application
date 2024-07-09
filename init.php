@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Africa/Cairo");
 # Routes
 define("AppURL", "http://localhost/chat%20Application/");
 $templates = 'include/template/'; // templates directory

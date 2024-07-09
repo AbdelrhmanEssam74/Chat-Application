@@ -1,7 +1,8 @@
 <?php
 require '../init.php';
-require "../" . $database . '/chat_user.php';
+require "../" . $database . 'chat_user.php';
 require "../" . $vender . 'autoload.php';
+session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -43,12 +44,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $mail->Body = '
             <p>Thank you for registering for Chat Application Demo.</p>
                 <p>This is a verification email, please click the link to verify your email address.</p>
-                <p><a href="http://localhost/tutorial/chat_application/verify.php?code=' . $user_object->getUserVerificationCode() . '">Click to Verify</a></p>
+                <p><a href="http://localhost:3000/verify.php?code=' . $user_object->getUserVerificationCode() . '">Click to Verify</a></p>
                 <p>Thank you...</p>
             ';
       $mail->send();
       $sending_mail_message = 'Verification Email sent to ' . $user_object->getUserEmail() . ', so before login first verify your email';
       $response = array('response_type' => 'success', 'success' => true, 'message' => "Successful Registration", 'sending_mail_message' => $sending_mail_message, 'sendMail' => true);
+      // set session values
+      $_SESSION['username'] = $user_object->getUserName();
+      $_SESSION['email'] = $user_object->getUserEmail();
+      $_SESSION['password'] = $user_object->getUserPassword();
+      $_SESSION['userID'] = $user_object->getUserId();
     } else {
       $response = array('response_type' => 'error', 'error' => false, 'message' => 'Failed Registration Try Again!');
     }
