@@ -4,6 +4,42 @@ $(document).ready(function () {
    * Get All register form inputs value, validate them and send them to the server
    */
 
+  // validate password value
+  var passwordInput = $("#password");
+  var passwordRules = $("#password-rules");
+  var show_password = $(".show-password");
+  var ruleLength = $("#rule-length");
+  var ruleLowercase = $("#rule-lowercase");
+  var ruleUppercase = $("#rule-uppercase");
+  var ruleNumber = $("#rule-number");
+  show_password.hover(
+    function () {
+      passwordInput.attr("type", "text");
+    },
+    function () {
+      passwordInput.attr("type", "password");
+    }
+  );
+
+  passwordInput.on("input", function () {
+    var password = passwordInput.val();
+
+    var hasValidLength = password.length >= 8;
+    var hasLowercase = /[a-z]/.test(password);
+    var hasUppercase = /[A-Z]/.test(password);
+    var hasNumber = /[0-9]/.test(password);
+
+    ruleLength.toggleClass("invalid", !hasValidLength);
+    ruleLowercase.toggleClass("invalid", !hasLowercase);
+    ruleUppercase.toggleClass("invalid", !hasUppercase);
+    ruleNumber.toggleClass("invalid", !hasNumber);
+    if (hasValidLength && hasLowercase && hasUppercase && hasNumber) {
+      passwordRules.hide();
+    } else {
+      passwordRules.show();
+    }
+  });
+  // send registration data to the server
   $("#register-form").submit(function (e) {
     e.preventDefault();
     var form = $(this);
@@ -33,7 +69,6 @@ $(document).ready(function () {
           .remove();
       }
     });
-
     if (isValid) {
       var formURL = form.attr("action");
       $.ajax({

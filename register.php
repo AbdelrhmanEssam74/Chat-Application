@@ -16,6 +16,15 @@
         </fieldset>
         <fieldset>
           <input placeholder="Your Password" type="password" name="password" id="password">
+          <i class="fas fa-eye show-password"></i>
+          <div id="password-rules" class="password-rules">
+            <ul>
+              <li id="rule-length">Password must contain at least 8 characters</li>
+              <li id="rule-lowercase">Password must contain at least one lowercase letter</li>
+              <li id="rule-uppercase">Password must contain at least one uppercase letter</li>
+              <li id="rule-number">Password must contain at least one number</li>
+            </ul>
+          </div>
         </fieldset>
         <fieldset>
           <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>

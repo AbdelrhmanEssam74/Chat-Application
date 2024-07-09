@@ -327,10 +327,39 @@ fieldset {
 }
 /* end notifications */
 /* start verification */
-.verification_alert{
+.verification_alert {
   font-size: 16px;
 }
+
 /* end verification */
+/* start validate password */
+.password-rules {
+  display: none;
+  color: var(--danger);
+  margin-top: 5px;
+  position: absolute;
+  z-index: 50;
+  background-color: var(--bs-border-color);
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.password-rules li {
+  color: var(--success);
+}
+
+.password-rules li.invalid {
+  color: var(--danger);
+}
+.show-password {
+  font-size: 20px;
+  position: absolute;
+  right: 3%;
+  top: 23%;
+  color: var(--info);
+  cursor: pointer;
+}
+/* end validate password */
 
 /* footer section start */
 .copy-right-sec {
