@@ -114,6 +114,72 @@ $(document).ready(function () {
     }
   });
 
+  // send login data to the server
+  $("#login-form").submit(function (e) {
+    e.preventDefault();
+    var form = $(this);
+    var formData = {
+      password: $("#password").val(),
+      email: $("#email").val(),
+    };
+
+    var isValid = true;
+
+    $.each(formData, function (index, value) {
+      if (value === "") {
+        $("#" + index).css("border-color", "red");
+        $("#" + index).addClass("invalid");
+        let parent = $("#" + index).parent();
+        parent.append(
+          "<span class='invalidFeedback'>* This field is required</span>"
+        );
+        isValid = false;
+      } else {
+        $("#" + index).css("border-color", "green");
+        $("#" + index).removeClass("invalid");
+        $("#" + index)
+          .parent()
+          .find(".invalidFeedback")
+          .remove();
+      }
+    });
+    if (isValid) {
+      var formURL = form.attr("action");
+      $.ajax({
+        url: formURL,
+        type: "POST",
+        data: formData,
+        success: function (data) {
+          console.log(data);
+          data = JSON.parse(data);
+          if (data.response_type == "success" && data.success == true) {
+            createToast(
+              data.response_type,
+              "fa-solid fa-circle-check",
+              "Success",
+              data.message
+            );
+            setInterval(() => {
+              location.href = data.URL;
+            }, 5000);
+          }
+          if (data.response_type == "error") {
+            $("#login-form");
+            let p = $("<p>").text(data.message).addClass("alert alert-danger ");
+            $("#login-form").prepend(p);
+          }
+          if (data.response_type == "warning") {
+            $("#login-form");
+            let p = $("<p>")
+              .text(data.message)
+              .addClass("alert alert-warning ");
+            $("#login-form").prepend(p);
+          }
+        },
+      });
+    }
+  });
+
   /*
   // Create a new WebSocket object and connect it to the server
   const conn = new WebSocket("ws://localhost:8080");
