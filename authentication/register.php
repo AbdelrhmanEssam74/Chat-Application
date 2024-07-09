@@ -50,13 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $mail->send();
       $sending_mail_message = 'Verification Email sent to ' . $user_object->getUserEmail() . ', so before login first verify your email';
       $response = array('response_type' => 'success', 'success' => true, 'message' => "Successful Registration", 'sending_mail_message' => $sending_mail_message, 'sendMail' => true);
-      // set session values
-      $_SESSION['email'] = $user_object->getUserEmail();
     } else {
       $response = array('response_type' => 'error', 'error' => false, 'message' => 'Failed Registration Try Again!');
     }
   }
-  echo "dsf";
+
   // Return response
   echo json_encode($response);
 }

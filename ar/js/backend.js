@@ -76,7 +76,6 @@ $(document).ready(function () {
         type: "POST",
         data: formData,
         success: function (data) {
-          console.log(data);
           data = JSON.parse(data);
           if (data.success == true) {
             createToast(
@@ -109,6 +108,14 @@ $(document).ready(function () {
               .addClass("alert alert-warning ");
             $("#register-form").prepend(p);
           }
+        },
+        error: function () {
+          createToast(
+            "error",
+            "fa-solid fa-circle-exclamation",
+            "Failed",
+            "Something went wrong, please try again later."
+          );
         },
       });
     }
