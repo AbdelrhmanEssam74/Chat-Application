@@ -1,7 +1,7 @@
-<?php include 'init.php' ?>
+<?php include 'init.php';
+$page = 'register';
+?>
 <?php include $templates . 'header.php' ?>
-
-<body>
   <div class="container">
     <div class="notifications"></div>
     <div class="form">
@@ -33,7 +33,4 @@
       </form>
     </div>
   </div>
-
-</body>
-
-<?php include $templates . 'footer.php' ?>
+  <?php include $templates . 'footer.php' ?>

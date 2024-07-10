@@ -186,7 +186,13 @@ $(document).ready(function () {
       });
     }
   });
-
+  //SECTION - Navbar
+  $("nav a").click(function () {
+    // Remove "active" class from all links
+    $("nav a").removeClass("active");
+    // Add "active" class to the clicked link
+    $(this).addClass("active");
+  });
   /*
   // Create a new WebSocket object and connect it to the server
   const conn = new WebSocket("ws://localhost:8080");

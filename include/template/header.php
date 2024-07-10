@@ -1,3 +1,15 @@
+<?php
+
+/**
+ * if user already login, redirect him to char room page
+ */
+if ($page == 'login' || $page == 'register') {
+  if (isset($_SESSION['user']['login']) && $_SESSION['user']['login'] == true) {
+    header('Location:' . $ChatRoom . '');
+    exit;
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,3 +25,26 @@
   <link rel="stylesheet" href="<?php echo $css ?>main.css">
   <title>Chat Application </title>
 </head>
+
+<body>
+  <?php
+  if ($page != 'login' || $page != 'register') {
+  ?>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">Chat App</label>
+      <ul>
+        <li><a class="active" href="<?php echo $ChatRoom ?>">Home</a></li>
+        <!-- <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Feedback</a></li> -->
+        <li><a href="<?php echo $authentication ?>logout.php">Logout</a></li>
+      </ul>
+    </nav>
+  <?php
+  }
+  ?>

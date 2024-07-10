@@ -1,10 +1,10 @@
 <?php include 'init.php';
-session_start();
+$page = 'login';
 $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : '';
 ?>
 <?php include $templates . 'header.php' ?>
 
-<body>
+
   <div class="container">
     <div class="notifications"></div>
     <div class="form">
