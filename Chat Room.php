@@ -88,7 +88,7 @@ $page = 'chatRoom';
           <div class="chatBody">
             <div>
               <ul>
-                <li class="msg-from">
+                <!-- <li class="msg-from">
                   <p class="msg-content">Me: <span>Lorem ipsum dolor sit amet.</span></p>
                   <p class="msg-date">2024-10-7 07:00</p>
                 </li>
@@ -119,7 +119,7 @@ $page = 'chatRoom';
                 <li class="msg-to">
                   <p class="msg-content">John Doe: <span>Lorem ipsum dolor sit amet.</span></p>
                   <p class="msg-date">2024-10-7 07:05</p>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
