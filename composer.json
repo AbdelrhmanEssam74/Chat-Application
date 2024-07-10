@@ -1,16 +1,17 @@
 {
-    "require": {
-        "cboden/ratchet": "^0.4.4",
-        "illuminate/database": "^11.14",
-        "illuminate/events": "^11.14",
-        "phpmailer/phpmailer": "^6.9"
+  "require": {
+    "cboden/ratchet": "^0.4.4",
+    "illuminate/database": "^11.14",
+    "illuminate/events": "^11.14",
+    "phpmailer/phpmailer": "^6.9",
+    "google/apiclient": "2.15.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ChatApp\\": "src"
     },
-    "autoload": {
-      "psr-4": {
-        "ChatApp\\":"src"
-      },
-      "files": [
-        "src/setup_eloquent.php"
-      ]
-    }
+    "files": [
+      "src/setup_eloquent.php"
+    ]
+  }
 }
