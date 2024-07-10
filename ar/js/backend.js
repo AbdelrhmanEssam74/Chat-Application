@@ -160,6 +160,8 @@ $(document).ready(function () {
           console.log(data);
           data = JSON.parse(data);
           if (data.response_type == "success" && data.success == true) {
+            $(".loader").addClass("login");
+            $("#loadingIcon").css("display", "flex");
             createToast(
               data.response_type,
               "fa-solid fa-circle-check",
@@ -168,7 +170,7 @@ $(document).ready(function () {
             );
             setInterval(() => {
               location.href = data.URL;
-            }, 3000);
+            }, 1500);
           }
           if (data.response_type == "error") {
             $("#login-form");
@@ -192,6 +194,30 @@ $(document).ready(function () {
     $("nav a").removeClass("active");
     // Add "active" class to the clicked link
     $(this).addClass("active");
+  });
+  // manage logout
+  $("#logout").on("click", function (e) {
+    e.preventDefault();
+    let url = $(this).attr("href");
+    $.ajax({
+      url: url,
+      type: "POST",
+      success: function (data) {
+        if (data == 1) {
+          $("#loadingIcon").css("display", "flex");
+          setInterval(() => {
+            location.href = "index.php";
+          }, 1500);
+        } else {
+          createToast(
+            "error",
+            "fa-solid fa-circle-check",
+            "error",
+            "Something Is Wrong, Try Later!"
+          );
+        }
+      },
+    });
   });
   /*
   // Create a new WebSocket object and connect it to the server

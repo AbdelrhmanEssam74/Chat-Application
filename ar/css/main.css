@@ -122,6 +122,43 @@ a:hover {
     left: 0;
   }
 }
+#loadingIcon {
+  background-color: #151c20c5;
+  position: fixed;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  padding: 0px 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  color: #fff;
+  z-index: 999;
+}
+.loader {
+  width: fit-content;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding-bottom: 8px;
+  background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+  animation: l2 1.5s linear infinite;
+}
+.loader:before {
+  content: "Logout...";
+}
+.loader.login:before {
+  content: "Signing in...";
+}
+@keyframes l2 {
+  to {
+    background-size: 100% 3px;
+  }
+}
 /* end nav */
 .container {
   width: 100%;
@@ -384,7 +421,7 @@ fieldset {
   height: 3px;
   content: "";
   box-shadow: 0 0 10px var(--main-color);
-  animation: timeOut 5s linear 1 forwards;
+  animation: timeOut 1.5s linear 1 forwards;
 }
 @keyframes timeOut {
   to {

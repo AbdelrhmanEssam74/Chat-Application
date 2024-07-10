@@ -8,6 +8,11 @@ if ($page == 'login' || $page == 'register') {
     header('Location:' . $ChatRoom . '');
     exit;
   }
+} elseif ($page != 'login' || $page != 'register') {
+  if (!isset($_SESSION['user']['login'])) {
+    header('Location:' . AppURL . '');
+    exit;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -28,7 +33,7 @@ if ($page == 'login' || $page == 'register') {
 
 <body>
   <?php
-  if ($page != 'login' || $page != 'register') {
+  if ($page != 'login' && $page != 'register') {
   ?>
     <nav>
       <input type="checkbox" id="check">
@@ -42,9 +47,12 @@ if ($page == 'login' || $page == 'register') {
       <li><a href="#">Services</a></li>
       <li><a href="#">Contact</a></li>
       <li><a href="#">Feedback</a></li> -->
-        <li><a href="<?php echo $authentication ?>logout.php">Logout</a></li>
+        <li><a id="logout" href="<?php echo $authentication ?>logout.php">Logout</a></li>
       </ul>
     </nav>
   <?php
   }
   ?>
+  <div id="loadingIcon" style="display: none;">
+    <div class="loader"></div>
+  </div>

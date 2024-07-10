@@ -2,7 +2,6 @@
 require '../init.php';
 require "../" . $database . 'chat_user.php';
 require "../" . $vender . 'autoload.php';
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $response  = array();

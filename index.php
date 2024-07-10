@@ -1,5 +1,5 @@
 <?php include 'init.php';
-$page = 'login';
+$page = 'login';  
 $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : '';
 ?>
 <?php include $templates . 'header.php' ?>
