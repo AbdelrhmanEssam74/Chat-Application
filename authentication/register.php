@@ -2,7 +2,6 @@
 require '../init.php';
 require "../" . $database . 'chat_user.php';
 require "../" . $vender . 'autoload.php';
-session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;

@@ -51,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'login' => true
           );
           // Set Cookies Variables
-          setcookie('UID', password_hash($user_data['user_id'], PASSWORD_DEFAULT), strtotime("+1 year"));
-          setcookie('UL', true, strtotime("+1 year"));
+          setcookie('UID', password_hash($user_data['user_id'], PASSWORD_DEFAULT), strtotime("+1 year"), '/');
+          setcookie('UL', true, strtotime("+1 year"), '/');
           $response = array(
             'response_type' => 'success',
             'success' => true,

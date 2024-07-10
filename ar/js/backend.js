@@ -23,7 +23,6 @@ $(document).ready(function () {
 
   passwordInput.on("input", function () {
     var password = passwordInput.val();
-
     var hasValidLength = password.length >= 8;
     var hasLowercase = /[a-z]/.test(password);
     var hasUppercase = /[A-Z]/.test(password);
@@ -77,16 +76,27 @@ $(document).ready(function () {
         data: formData,
         success: function (data) {
           data = JSON.parse(data);
+          console.log(data);
           if (data.success == true) {
-            createToast(
-              data.response_type,
-              "fa-solid fa-circle-check",
-              "Success",
-              data.message
-            );
+            $(".loader").addClass("signup");
+            $("#loadingIcon").css("display", "flex");
             setInterval(() => {
-              console.log("end");
-            }, 5000);
+              $("#loadingIcon").css("display", "none");
+            }, 2000);
+            if (data.sendMail == true) {
+              setInterval(() => {
+                $("#register-form")
+                  .prepend()
+                  .addClass("alert alert-primary verification_alert")
+                  .text(data.sending_mail_message);
+              }, 2000);
+              createToast(
+                data.response_type,
+                "fa-solid fa-circle-check",
+                "Success",
+                data.message
+              );
+            }
           } else {
             createToast(
               data.response_type,
@@ -94,12 +104,6 @@ $(document).ready(function () {
               "Failed",
               data.message
             );
-          }
-          if (data.sendMail == true) {
-            $("#register-form")
-              .prepend()
-              .addClass("alert alert-primary verification_alert")
-              .text(data.sending_mail_message);
           }
           if (data.response_type == "warning") {
             $("#register-form");
@@ -170,7 +174,7 @@ $(document).ready(function () {
             );
             setInterval(() => {
               location.href = data.URL;
-            }, 1500);
+            }, 2000);
           }
           if (data.response_type == "error") {
             $("#login-form");
@@ -207,7 +211,7 @@ $(document).ready(function () {
           $("#loadingIcon").css("display", "flex");
           setInterval(() => {
             location.href = "index.php";
-          }, 1500);
+          }, 2000);
         } else {
           createToast(
             "error",
@@ -312,7 +316,7 @@ function createToast(type, icon, title, text) {
                 <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
             </div>`;
   notifications.appendChild(newToast);
-  newToast.timeOut = setTimeout(() => newToast.remove(), 5000);
+  newToast.timeOut = setTimeout(() => newToast.remove(), 2000);
 }
 // success.onclick = function () {
 //   let type = "success";
