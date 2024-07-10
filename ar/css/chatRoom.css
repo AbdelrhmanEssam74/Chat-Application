@@ -160,13 +160,13 @@ ul {
 .left .chatRoom .chatBox .chatBody::-webkit-scrollbar-thumb {
   background-color: #414141;
 }
-.chatWindow .left .chatRoom .chatBox .chatBody div ul {
+.chatWindow .left .chatRoom .chatBox .chatBody ul {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 5px 10px;
 }
-.chatWindow .left .chatRoom .chatBox .chatBody div ul li {
+.chatWindow .left .chatRoom .chatBox .chatBody ul li {
   padding: 5px;
   border-radius: 4px;
   max-height: fit-content;
@@ -174,18 +174,18 @@ ul {
   flex-direction: column;
   color: #fff;
 }
-.chatWindow .left .chatRoom .chatBox .chatBody div ul li.msg-from {
+.chatWindow .left .chatRoom .chatBox .chatBody ul li.msg-from {
   margin: 0;
   background-color: #6e88ff;
   width: 265px;
 }
-.chatWindow .left .chatRoom .chatBox .chatBody div ul li.msg-to {
+.chatWindow .left .chatRoom .chatBox .chatBody ul li.msg-to {
   margin: 0;
   background-color: #504ec4;
   width: 265px;
   margin-left: auto;
 }
-.chatWindow .left .chatRoom .chatBox .chatBody div ul li .msg-content {
+.chatWindow .left .chatRoom .chatBox .chatBody ul li .msg-content {
   margin: 0;
   padding: 0;
   color: #fff;
@@ -193,12 +193,12 @@ ul {
   font-weight: 500;
   text-wrap: wrap;
 }
-.chatWindow .left .chatRoom .chatBox .chatBody div ul li .msg-content span {
+.chatWindow .left .chatRoom .chatBox .chatBody ul li .msg-content span {
   font-size: 13px;
   font-weight: 300;
   text-wrap: wrap;
 }
-.chatWindow .left .chatRoom .chatBox .chatBody div ul li .msg-date {
+.chatWindow .left .chatRoom .chatBox .chatBody ul li .msg-date {
   text-align: right;
   padding: 0px 10px 0;
   color: #fff;

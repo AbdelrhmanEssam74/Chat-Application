@@ -20,7 +20,7 @@ $page = 'chatRoom';
         </div>
         <div class="usersBody">
           <ul>
-            <li class="user-item">
+            <li data-user="John Doe" data-uid="11613516465" data-status="offline" class="user-item">
               <div class="contact-data">
                 <p class="user_name">John Doe</p>
                 <img src="<?php echo $img ?>profile.png" alt="">
@@ -29,45 +29,9 @@ $page = 'chatRoom';
                 <i class="fas fa-circle offline-dot"></i>
               </div>
             </li>
-            <li class="user-item">
+            <li data-user="Radwa" data-uid="11613516465" data-status="online" class="user-item">
               <div class="contact-data">
-                <p class="user_name">John Doe</p>
-                <img src="<?php echo $img ?>profile.png" alt="">
-              </div>
-              <div class="status">
-                <i class="fas fa-circle online-dot"></i>
-              </div>
-            </li>
-            <li class="user-item">
-              <div class="contact-data">
-                <p class="user_name">John Doe</p>
-                <img src="<?php echo $img ?>profile.png" alt="">
-              </div>
-              <div class="status">
-                <i class="fas fa-circle offline-dot"></i>
-              </div>
-            </li>
-            <li class="user-item">
-              <div class="contact-data">
-                <p class="user_name">John Doe</p>
-                <img src="<?php echo $img ?>profile.png" alt="">
-              </div>
-              <div class="status">
-                <i class="fas fa-circle online-dot"></i>
-              </div>
-            </li>
-            <li class="user-item">
-              <div class="contact-data">
-                <p class="user_name">John Doe</p>
-                <img src="<?php echo $img ?>profile.png" alt="">
-              </div>
-              <div class="status">
-                <i class="fas fa-circle offline-dot"></i>
-              </div>
-            </li>
-            <li class="user-item">
-              <div class="contact-data">
-                <p class="user_name">John Doe</p>
+                <p class="user_name">Radwa</p>
                 <img src="<?php echo $img ?>profile.png" alt="">
               </div>
               <div class="status">
@@ -82,49 +46,13 @@ $page = 'chatRoom';
       <div class="chatRoom">
         <div class="chatBox">
           <div class="chatHeader">
-            <h4>Chat Room : John Doe</h4>
-            <p>Active Now</p>
+            <h4>Chat Room :</h4>
+            <p>No Status</p>
           </div>
           <div class="chatBody">
-            <div>
-              <ul>
-                <!-- <li class="msg-from">
-                  <p class="msg-content">Me: <span>Lorem ipsum dolor sit amet.</span></p>
-                  <p class="msg-date">2024-10-7 07:00</p>
-                </li>
-                <li class="msg-to">
-                  <p class="msg-content">John Doe: <span>Lorem ipsum dolor sit amet.</span></p>
-                  <p class="msg-date">2024-10-7 07:05</p>
-                </li>
-                <li class="msg-from">
-                  <p class="msg-content">Me: <span>Lorem ipsum dolor sit amet.</span></p>
-                  <p class="msg-date">2024-10-7 07:00</p>
-                </li>
-                <li class="msg-to">
-                  <p class="msg-content">John Doe: <span>Lorem ipsum dolor sit amet.</span></p>
-                  <p class="msg-date">2024-10-7 07:05</p>
-                </li>
-                <li class="msg-from">
-                  <p class="msg-content">Me: <span>Lorem ipsum dolor sit amet.</span></p>
-                  <p class="msg-date">2024-10-7 07:00</p>
-                </li>
-                <li class="msg-to">
-                  <p class="msg-content">John Doe: <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum accusantium voluptatem possimus alias impedit cumque debitis natus laudantium velit aperiam?</span></p>
-                  <p class="msg-date">2024-10-7 07:05</p>
-                </li>
-                <li class="msg-from">
-                  <p class="msg-content">Me: <span>Lorem ipsum dolor sit amet.</span></p>
-                  <p class="msg-date">2024-10-7 07:00</p>
-                </li>
-                <li class="msg-to">
-                  <p class="msg-content">John Doe: <span>Lorem ipsum dolor sit amet.</span></p>
-                  <p class="msg-date">2024-10-7 07:05</p>
-                </li> -->
-              </ul>
-            </div>
           </div>
           <div class="chatFooter">
-            <form action="" method="post">
+            <form action="" method="post" id="message-form">
               <input type="text" name="msg" placeholder="Type a message...">
               <button type="submit" name="send"><i class="fas fa-paper-plane"></i></button>
             </form>
