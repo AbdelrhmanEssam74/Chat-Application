@@ -33,8 +33,10 @@ body {
   line-height: 30px;
   color: #777;
   background: var(--Mercury);
-  border: 1px solid;
-  height: 100vh;
+}
+.container {
+  width: 100%;
+  position: relative;
 }
 /* start nav */
 nav {
@@ -104,6 +106,7 @@ a:hover {
     left: -100%;
     text-align: center;
     transition: all 0.5s;
+    z-index: 999;
   }
   nav ul li {
     display: block;
@@ -163,16 +166,12 @@ a:hover {
   }
 }
 /* end nav */
-.container {
-  width: 100%;
-  position: relative;
-}
 .form {
   width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 #login-form,

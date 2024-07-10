@@ -318,6 +318,9 @@ function createToast(type, icon, title, text) {
   notifications.appendChild(newToast);
   newToast.timeOut = setTimeout(() => newToast.remove(), 2000);
 }
+$("#action_menu_btn").click(function () {
+  $(".action_menu").toggle();
+}); 
 // success.onclick = function () {
 //   let type = "success";
 //   let icon = "fa-solid fa-circle-check";
