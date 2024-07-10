@@ -2,3 +2,4 @@ vendor/
 .vscode
 client_secret.json
 curl/
+node_modules/
