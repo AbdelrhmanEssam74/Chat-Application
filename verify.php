@@ -3,6 +3,7 @@
 /***********************/
 //  Verification Page  //
 /**********************/
+global $database;
 include 'init.php';
 require $database . 'chat_user.php';
 session_start();

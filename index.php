@@ -1,4 +1,5 @@
-<?php include 'init.php';
+<?php global $templates, $authentication;
+include 'init.php';
 $page = 'login';  
 $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : '';
 ?>

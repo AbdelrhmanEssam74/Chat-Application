@@ -1,4 +1,6 @@
-<?php include 'init.php';
+<?php
+global $templates, $authentication;
+include 'init.php';
 $page = 'register';
 ?>
 <?php include $templates . 'header.php' ?>

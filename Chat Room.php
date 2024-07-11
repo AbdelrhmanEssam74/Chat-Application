@@ -1,4 +1,5 @@
-<?php include 'init.php';
+<?php global $templates, $img;
+include 'init.php';
 $page = 'chatRoom';
 ?>
 <?php include $templates . 'header.php' ?>

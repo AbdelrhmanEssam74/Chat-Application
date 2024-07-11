@@ -1,18 +1,18 @@
-<?php
+<?php global $page, $ChatRoom, $css, $authentication;
 
 /**
  * if user already login, redirect him to char room page
  */
 if ($page == 'login' || $page == 'register') {
-  if (isset($_SESSION['user']['login']) && $_SESSION['user']['login'] == true) {
+  if (isset($_SESSION['user']['login']) && $_SESSION['user']['login']) {
     header('Location:' . $ChatRoom . '');
     exit;
   }
-} elseif ($page != 'login' || $page != 'register') {
-  if (!isset($_SESSION['user']['login'])) {
-    header('Location:' . AppURL . '');
-    exit;
-  }
+} else {
+    if (!isset($_SESSION['user']['login'])) {
+        header('Location:' . AppURL);
+        exit;
+    }
 }
 ?>
 <!DOCTYPE html>

@@ -1,4 +1,5 @@
 <?php
+global $database;
 
 /**
  * Logout page

@@ -1,7 +1,8 @@
 <?php
+global $database, $vendor;
 require '../init.php';
 require "../" . $database . 'chat_user.php';
-require "../" . $vender . 'autoload.php';
+require "../" . $vendor . 'autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;

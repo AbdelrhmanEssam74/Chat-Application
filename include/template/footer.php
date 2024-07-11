@@ -1,3 +1,6 @@
+<?php
+global$js;
+?>
 <footer>
   <!-- footer copy right section start -->
   <section id="copy-right">
