@@ -9,10 +9,10 @@ if ($page == 'login' || $page == 'register') {
     exit;
   }
 } else {
-    if (!isset($_SESSION['user']['login'])) {
-        header('Location:' . AppURL);
-        exit;
-    }
+  if (!isset($_SESSION['user']['login'])) {
+    header('Location:' . AppURL);
+    exit;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -29,6 +29,13 @@ if ($page == 'login' || $page == 'register') {
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="<?php echo $css ?>chatRoom.css">
   <link rel="stylesheet" href="<?php echo $css ?>main.css">
+  <?php
+  if (isset($page) && $page = "profile") :
+  ?>
+    <link rel="stylesheet" href="<?php echo $css ?>profile.css">
+  <?php
+  endif;
+  ?>
   <title>Chat Application </title>
 </head>
 
@@ -43,11 +50,11 @@ if ($page == 'login' || $page == 'register') {
       </label>
       <label class="logo">Chat App</label>
       <ul>
-        <li><a class="active" href="<?php echo $ChatRoom ?>">Home</a></li>
+        <li><a  href="<?php echo $ChatRoom ?>">Home</a></li>
         <!-- <li><a href="#">About</a></li>
       <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">Feedback</a></li> -->
+      <li><a href="#">Contact</a></li>-->
+        <li><a id="profile" href="Profile.php">Profile</a></li>
         <li><a id="logout" href="<?php echo $authentication ?>logout.php">Logout</a></li>
       </ul>
     </nav>

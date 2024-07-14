@@ -89,4 +89,5 @@ $(document).ready(function () {
       updateUserStatus(userElement, user_id);
     }, 1000);
   });
+  // create model to allow user edit her data
 });
