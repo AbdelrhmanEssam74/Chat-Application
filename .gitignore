@@ -1,5 +1,8 @@
 vendor/
-.vscode
+.vscode/
 client_secret.json
 curl/
 node_modules/
+ar/images/
+ar/font/
+.idea/

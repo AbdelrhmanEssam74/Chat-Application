@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $user_object->setUserName($_POST['username']);
   $user_object->setUserEmail($_POST['email']);
   $user_object->setUserPassword($_POST['password']);
-  // $user_object->setUserProfile($user_object->make_avatar(strtoupper($_POST['username'][0])));
+  $user_object->setUserProfile($user_object->make_avatar(strtoupper($_POST['username'][0])));
   $user_object->setUserStatus('Disabled');
   $user_object->setUserCreatedOn(date('Y-m-d h:i:s'));
   $user_object->setUserVerificationCode(md5(uniqid()));

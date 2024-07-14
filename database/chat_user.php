@@ -114,24 +114,28 @@ class ChatUser extends database_connection
   {
     return $this->userLoginStatus;
   }
-  // method to make a specific avatar for the user
-  // function make_avatar($character)
-  // {
-  //   $path = "images/" . time() . ".png";
-  //   $image = imagecreate(200, 200);
-  //   $red = rand(0, 255);
-  //   $green = rand(0, 255);
-  //   $blue = rand(0, 255);
-  //   imagecolorallocate($image, $red, $green, $blue);
-  //   $textcolor = imagecolorallocate($image, 255, 255, 255);
+  /**
+   * 
+   * @param mixed $character
+   * @return string
+   */
+  function make_avatar($character)
+  {
+    $path = "../ar/images/" . time() . ".png";
+    $image = imagecreate(200, 200);
+    $red = rand(0, 255);
+    $green = rand(0, 255);
+    $blue = rand(0, 255);
+    imagecolorallocate($image, $red, $green, $blue);
+    $textcolor = imagecolorallocate($image, 255, 255, 255);
 
-  //   $font = dirname(__FILE__) . '/font/arial.ttf';
+    $font = '../ar/font/arial.ttf';
 
-  //   imagettftext($image, 100, 0, 55, 150, $textcolor, $font, $character);
-  //   imagepng($image, $path);
-  //   imagedestroy($image);
-  //   return $path;
-  // }
+    imagettftext($image, 100, 0, 55, 150, $textcolor, $font, $character);
+    imagepng($image, $path);
+    imagedestroy($image);
+    return $path;
+  }
   /**
    * Summary of get_user_data_by_email
    * @return mixed
