@@ -121,7 +121,7 @@ class ChatUser extends database_connection
    */
   function make_avatar($character)
   {
-    $path = "../ar/images/" . time() . ".png";
+    $path = "../ar/images/" . $this->getUserId() . ".png";
     $image = imagecreate(200, 200);
     $red = rand(0, 255);
     $green = rand(0, 255);
@@ -242,4 +242,22 @@ class ChatUser extends database_connection
     $statement->bindParam(':user_id', $this->userId);
     return $statement->execute();
   }
+  /**
+   * Summary of get_user_all_data
+   * @return array
+   */
+  function get_user_all_data()
+	{
+		$query = "
+		SELECT * FROM chat_user_table 
+		";
+
+		$statement = $this->connect->prepare($query);
+
+		$statement->execute();
+
+		$data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+		return $data;
+	}
 }

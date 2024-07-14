@@ -1,6 +1,13 @@
 <?php global $templates, $img;
 include 'init.php';
 $page = 'chatRoom';
+require $database . 'chat_user.php';
+// Create a new instance of the ChatUser class
+$user_object = new ChatUser;
+$profile_img_path = str_replace("../", "", $_SESSION['user']["profile"]); // ar/images/img_name_with_userid.png
+$Name = $_SESSION['user']["user_name"];
+$user_id = $_SESSION['user']["user_id"];
+
 ?>
 <?php include $templates . 'header.php' ?>
 <div class="container">
@@ -9,10 +16,11 @@ $page = 'chatRoom';
     <div class="right">
       <div class="userInfo">
         <div class="img">
-          <img src="<?php echo $img ?>profile.png" alt="">
+          <img src="<?php echo $profile_img_path ?>" alt="">
         </div>
         <div class="info">
-          <h3>John Doe</h3>
+          <h3><?php echo  $Name ?></h3>
+
         </div>
       </div>
       <div class="users">
@@ -21,24 +29,31 @@ $page = 'chatRoom';
         </div>
         <div class="usersBody">
           <ul>
-            <li data-user="John Doe" data-uid="11613516465" data-status="offline" class="user-item">
-              <div class="contact-data">
-                <p class="user_name">John Doe</p>
-                <img src="<?php echo $img ?>profile.png" alt="">
-              </div>
-              <div class="status">
-                <i class="fas fa-circle offline-dot"></i>
-              </div>
-            </li>
-            <li data-user="Radwa" data-uid="11613516465" data-status="online" class="user-item">
-              <div class="contact-data">
-                <p class="user_name">Radwa</p>
-                <img src="<?php echo $img ?>profile.png" alt="">
-              </div>
-              <div class="status">
-                <i class="fas fa-circle online-dot"></i>
-              </div>
-            </li>
+            <?php
+            $user_data = $user_object->get_user_all_data();
+            foreach ($user_data as $user) :
+              if ($user['user_id'] !== $user_id) :
+                $user_img = str_replace("../", "", $user['user_profile']);
+            ?>
+                <li data-user="<?php echo $user['username'] ?>" data-uid="<?php echo $user['user_id'] ?>" data-status="<?php echo $user['user_login_status'] ?>" class="user-item">
+                  <div class="contact-data">
+                    <p class="user_name"><?php echo $user['username'] ?></p>
+                    <img src="<?php echo $user_img ?>" alt="">
+                  </div>
+                  <div class="status">
+                    <?php
+                    if ($user['user_login_status'] == "Login") :
+                      echo '<i class="fas fa-circle online-dot"></i>';
+                    elseif ($user['user_login_status'] == "Disable") :
+                      echo '<i class="fas fa-circle offline-dot"></i>';
+                    endif;
+                    ?>
+                  </div>
+                </li>
+            <?php
+              endif;
+            endforeach;
+            ?>
           </ul>
         </div>
       </div>
