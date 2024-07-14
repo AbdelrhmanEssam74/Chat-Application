@@ -7,7 +7,6 @@ $user_object = new ChatUser;
 $profile_img_path = str_replace("../", "", $_SESSION['user']["profile"]); // ar/images/img_name_with_userid.png
 $Name = $_SESSION['user']["user_name"];
 $user_id = $_SESSION['user']["user_id"];
-
 ?>
 <?php include $templates . 'header.php' ?>
 <div class="container">
