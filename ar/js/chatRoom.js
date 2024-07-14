@@ -55,36 +55,6 @@ $(document).ready(function () {
     chatTitle.text(username);
     chatHeader.append(chatTitle);
     chatHeader.append(statue);
-    // messages = [
-    //   {
-    //     sender: "Me",
-    //     content: "Lorem ipsum dolor sit amet.",
-    //     date: "2024-10-7 07:00",
-    //   },
-    //   {
-    //     sender: username,
-    //     content: "New message content",
-    //     date: getCurrentDateTime(),
-    //   },
-    //   // Add more messages here...
-    // ];
-
-    // Render the updated messages
-    // renderMessages();
   });
 
-  // Helper function to get current date and time
-  function getCurrentDateTime() {
-    var now = new Date();
-    var year = now.getFullYear();
-    var month = String(now.getMonth() + 1).padStart(2, "0");
-    var day = String(now.getDate()).padStart(2, "0");
-    var hour = String(now.getHours()).padStart(2, "0");
-    var minute = String(now.getMinutes()).padStart(2, "0");
-    var second = String(now.getSeconds()).padStart(2, "0");
-
-    return (
-      year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second
-    );
-  }
 });
