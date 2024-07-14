@@ -34,20 +34,15 @@ $user_id = $_SESSION['user']["user_id"];
             foreach ($user_data as $user) :
               if ($user['user_id'] !== $user_id) :
                 $user_img = str_replace("../", "", $user['user_profile']);
+                $user_status = ($user['user_login_status'] == "Login") ? "Active Now" : "Offline";
             ?>
-                <li data-user="<?php echo $user['username'] ?>" data-uid="<?php echo $user['user_id'] ?>" data-status="<?php echo $user['user_login_status'] ?>" class="user-item">
+                <li data-user="<?php echo $user['username'] ?>" data-uid="<?php echo $user['user_id'] ?>" data-status="<?php echo   $user_status ?>" class="user-item">
                   <div class="contact-data">
                     <p class="user_name"><?php echo $user['username'] ?></p>
                     <img src="<?php echo $user_img ?>" alt="">
                   </div>
                   <div class="status">
-                    <?php
-                    if ($user['user_login_status'] == "Login") :
-                      echo '<i class="fas fa-circle online-dot"></i>';
-                    elseif ($user['user_login_status'] == "Disable") :
-                      echo '<i class="fas fa-circle offline-dot"></i>';
-                    endif;
-                    ?>
+                    <i class="fas fa-circle online-dot"></i>
                   </div>
                 </li>
             <?php

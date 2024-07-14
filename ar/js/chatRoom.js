@@ -49,6 +49,7 @@ $(document).ready(function () {
     var username = element.attr("data-user");
     var user_id = element.attr("data-uid");
     var status = element.attr("data-status");
+
     // Update the message list based on user item data
     chatHeader.empty();
     statue.text(status);
@@ -56,5 +57,36 @@ $(document).ready(function () {
     chatHeader.append(chatTitle);
     chatHeader.append(statue);
   });
-
+  // Update user status
+  function updateUserStatus(userElement, user_id) {
+    // Make an AJAX request to get the updated user status
+    $.ajax({
+      url: "ar/function/getUserStatus.php",
+      method: "POST",
+      data: { user_id: user_id },
+      success: function (data) {
+        var user_login_status = data;
+        // Update the data-status attribute of the user element
+        userElement.attr("data-status", user_login_status);
+        // Update the status icon based on the user login status
+        var statusIcon = userElement.find(".status svg");
+        if (user_login_status === "Login") {
+          statusIcon.removeClass("offline-dot").addClass("online-dot");
+        } else {
+          statusIcon.removeClass("online-dot").addClass("offline-dot");
+        }
+      },
+      error: function (err) {
+        console.log(err);
+      },
+    });
+  }
+  // Update all user statuses
+  $(".user-item").each(function () {
+    var userElement = $(this);
+    var user_id = userElement.attr("data-uid");
+    setInterval(() => {
+      updateUserStatus(userElement, user_id);
+    }, 1000);
+  });
 });
