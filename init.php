@@ -11,3 +11,4 @@ $img = 'ar/images/'; // images directory
 $database = 'database/'; // database directory
 $vendor = 'vendor/';
 $ChatRoom = AppURL . 'Chat Room.php';
+$profile = AppURL . 'Profile.php';

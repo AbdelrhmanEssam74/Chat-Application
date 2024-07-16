@@ -1,4 +1,4 @@
-<?php global $templates, $img;
+<?php global $templates, $img, $database;
 include 'init.php';
 $page = 'chatRoom';
 require $database . 'chat_user.php';
@@ -9,6 +9,7 @@ $Name = $_SESSION['user']["user_name"];
 $user_id = $_SESSION['user']["user_id"];
 ?>
 <?php include $templates . 'header.php' ?>
+<?php include $templates . 'navBar.php' ?>
 <div class="container">
   <div class="notifications"></div>
   <div class="chatWindow">

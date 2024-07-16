@@ -1,4 +1,4 @@
-<?php global $templates, $img;
+<?php global $page, $templates, $img, $database;
 include 'init.php';
 $page = 'profile';
 require $database . 'chat_user.php';
@@ -7,6 +7,7 @@ $user_object = new ChatUser;
 // $profile_img_path = str_replace("../", "", $user_object->getUserProfile()); // ar/images/img_name_with_userid.png
 ?>
 <?php include $templates . 'header.php' ?>
+<?php include $templates . 'navBar.php' ?>
 <div class="container profile mt-4">
   <hr class="mt-0 mb-4">
   <div class="row">

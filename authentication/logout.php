@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $user_id = $_SESSION['user']['user_id'];
   $user_object = new ChatUser;
   $user_object->setUserId($user_id);
-  $user_object->setUserLoginStatus("Disable");
+  $user_object->setUserLoginStatus("Logout");
   if ($user_object->update_user_login_data()) {
     // Remove 'user id' cookie
     setcookie('UID', '', time() - 3600, '/');
