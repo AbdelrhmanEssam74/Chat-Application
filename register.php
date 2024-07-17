@@ -5,6 +5,9 @@ $page = 'register';
 ?>
 <?php include $templates . 'header.php' ?>
   <div class="container">
+      <div id="loadingIcon" style="display: none;">
+          <div class="loader"></div>
+      </div>
     <div class="notifications"></div>
     <div class="form">
       <form id="register-form" action="<?php echo $authentication ?>register.php" method="post">
