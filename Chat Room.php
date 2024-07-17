@@ -34,15 +34,15 @@ $user_id = $_SESSION['user']["user_id"];
             foreach ($user_data as $user) :
               if ($user['user_id'] !== $user_id) :
                 $user_img = str_replace("../", "", $user['user_profile']);
-                $user_status = ($user['user_login_status'] == "Login") ? "Active Now" : "Offline";
+                $user_status = ($user['user_login_status'] === "Login") ? "Active Now" : "Offline";
             ?>
-                <li data-user="<?php echo $user['username'] ?>" data-uid="<?php echo $user['user_id'] ?>" data-status="<?php echo   $user_status ?>" class="user-item">
+                <li data-user="<?php echo $user['username'] ?>" data-uid="<?php echo $user['user_id'] ?>" data-status="<?php echo $user_status ?>" class="user-item">
                   <div class="contact-data">
                     <p class="user_name"><?php echo $user['username'] ?></p>
                     <img src="<?php echo $user_img ?>" alt="">
                   </div>
                   <div class="status">
-                    <i class="fas fa-circle online-dot"></i>
+                    <I CLASS="fas fa-circle offline-dot"></I>
                   </div>
                 </li>
             <?php
@@ -56,7 +56,7 @@ $user_id = $_SESSION['user']["user_id"];
     <div class="left">
       <div class="chatRoom">
         <div class="chatBox">
-          <div class="chatHeader">
+          <div class="chatHeader" data-receiver="">
             <h4>Chat Room :</h4>
             <p>No Status</p>
           </div>
@@ -64,8 +64,9 @@ $user_id = $_SESSION['user']["user_id"];
           </div>
           <div class="chatFooter">
             <form action="" method="post" id="message-form">
-              <input type="text" name="msg" placeholder="Type a message...">
-              <button type="submit" name="send"><i class="fas fa-paper-plane"></i></button>
+<!--              <input type="text" name="msg" placeholder="Type a message...">-->
+                <textarea class="form-control" id="chat-message" name="chat-message" placeholder="Type a message..." data-parsley-maxlenght="1000" data-parsley-pattern="/^[a-zA-Z0-9\s]+$/"></textarea>
+              <button type="submit" name="send" id="send-button" data-uid="<?php echo $user_id ?>"><i class="fas fa-paper-plane"></i></button>
             </form>
           </div>
         </div>
