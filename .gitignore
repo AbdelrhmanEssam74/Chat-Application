@@ -6,3 +6,5 @@ node_modules/
 ar/images/
 ar/font/
 .idea/
+composer.json
+composer.lock
