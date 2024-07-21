@@ -142,6 +142,26 @@ class ChatUser extends database_connection
      * Summary of get_user_data_by_email
      * @return mixed
      */
+    function get_user_data_by_id(): mixed
+    {
+        $query = "
+		SELECT * FROM chat_user_table 
+		WHERE user_id = :id
+		";
+
+        $statement = $this->connect->prepare($query);
+
+        $statement->bindParam(':id', $this->userId);
+
+        if ($statement->execute()) {
+            $user_data = $statement->fetch(PDO::FETCH_ASSOC);
+        }
+        return $user_data;
+    }
+
+    /**
+     * @return mixed
+     */
     function get_user_data_by_email(): mixed
     {
         $query = "
@@ -158,7 +178,6 @@ class ChatUser extends database_connection
         }
         return $user_data;
     }
-
     /**
      * Summary of save_data
      * @return bool
