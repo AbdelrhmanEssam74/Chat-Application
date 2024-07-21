@@ -2,6 +2,7 @@
 
 namespace ChatApp;
 
+require dirname(__DIR__) . '/database/chat_user.php';
 require 'vendor/autoload.php';
 //NOTE - This is an interface provided by the Ratchet library.
 //NOTE -  It defines the methods that a class must implement to act as a message component 
@@ -40,21 +41,31 @@ class Chat implements MessageComponentInterface
     public function onMessage(ConnectionInterface $from, $msg)
     {
         $msg = json_decode($msg);
+        $user_obj = new \ChatUser();
+        $user_obj->setUserId($msg->user_id);
+        $user_data = $user_obj->get_user_data_by_id();
+        $username = $user_data['username'];
+        $data['date'] = date("Y-m-d h:i");
         switch ($msg->type) {
             case 'message':
                 foreach ($this->clients as $client) : // for each through all the clients that are currently connected in the server and send a message
-                    if ($client !== $from) :
-                        $response = [
-                            'msg' => ($msg->msg),
-                            "date" =>($msg->date),
-                        ];
-                    $client->send(json_encode($response));
+                    if ($client == $from) :
+                        $data['from'] = "Me";
+//                        $response = [
+//                            'msg' => ($msg->msg),
+//                            "date" =>($msg->date),
+//                        ];
+
+                    else:
+                        $data['from'] = $username;
                     endif;
+                    $data['message'] = $msg->msg;
+                    $client->send(json_encode($data));
                 endforeach;
                 // store the message in the DB
                 message::create([
                     "text" => $msg->msg,
-                    "time"=>$msg->date,
+                    "time" => $msg->date,
                     "sender" => $msg->user_id,
                     "receiver" => $msg->receiver]);
                 break;
