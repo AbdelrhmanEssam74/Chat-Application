@@ -142,25 +142,40 @@ $(document).ready(function () {
         //   },
         // });
     };
+    console.log("123")
     // Event handler when a message is received from the server
     conn.onmessage = function (e) {
         let data = JSON.parse(e.data);
-        console.log(data)
-        let background_class = 'text-dark alert-right';
-        let row_div = $("<div></div>").addClass("row just-content-start")
-        let div2 = $("<div></div>").addClass("col-sm-10")
-        let div3 = $("<div></div>").addClass("shadow-sm msg-from text-dark alert-right")
-        let msg_content = $("<div></div>")
-        let dateP = $("<p></p>").addClass("msg-date")
-        div2.append(div3)
-        div3.append(msg_content)
-        div3.append(dateP)
-        row_div.append(div2)
-        dateP.text(data.date)
-        msg_content.text(data.msg)
-        $(".chatBody").append(row_div)
-        $("#chat-message").val(' ')
+        console.log(data);
+        let row_class = "";
+        let background_class = "";
+
+        if (data.from === 'Me') {
+            row_class = "row d-flex justify-content-start";
+            background_class = "text-dark alert-light";
+        } else {
+            row_class = "row d-flex justify-content-end";
+            background_class = "alert-success";
+        }
+
+        let html_data = generateChatMessageHTML(data.from, data.message, data.date, row_class, background_class);
+        $(".chatBody").append(html_data);
+        $("#chat-message").val('').attr("placeholder", "Type a message...");
     };
+
+    function generateChatMessageHTML(from, message, date, rowClass, backgroundClass) {
+        return `
+    <div class="${rowClass}">
+      <div class="col-sm-10">
+        <div class="shadow-sm alert ${backgroundClass}">
+          <b>${from}: </b>${message}<br>
+          <div class="text-end"><small><i>${date}</i></small></div>
+        </div>
+      </div>
+    </div>
+  `;
+    }
+
     // Disable button and change its color and cursor initially
     $("#send-button").prop("disabled", true).addClass("disabled");
     // Enable or disable button based on textarea value
@@ -183,7 +198,6 @@ $(document).ready(function () {
         // Get the message and user ID from the form inputs
         let message = $("#chat-message").val();
         let user_id = $("#send-button").attr("data-uid");
-
         // Create the form data object with the message, user ID, receiver, and date
         let formData = {
             type: "message",
