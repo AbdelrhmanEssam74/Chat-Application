@@ -51,11 +51,6 @@ class Chat implements MessageComponentInterface
                 foreach ($this->clients as $client) : // for each through all the clients that are currently connected in the server and send a message
                     if ($client == $from) :
                         $data['from'] = "Me";
-//                        $response = [
-//                            'msg' => ($msg->msg),
-//                            "date" =>($msg->date),
-//                        ];
-
                     else:
                         $data['from'] = $username;
                     endif;
