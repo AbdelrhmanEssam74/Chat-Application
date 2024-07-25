@@ -5,7 +5,8 @@
     "illuminate/events": "^11.14",
     "phpmailer/phpmailer": "^6.9",
     "google/apiclient": "2.15.0",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-intl": "*"
   },
   "autoload": {
     "psr-4": {

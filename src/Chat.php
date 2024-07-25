@@ -11,7 +11,6 @@ use Ratchet\MessageComponentInterface;
 //NOTE - It defines the methods that a class must implement to represent a connection in a Ratchet server. The connection interface allows you to interact with individual client connections, such as sending data or closing the connection
 use Ratchet\ConnectionInterface;
 use ChatApp\models\message;
-
 class Chat implements MessageComponentInterface
 {
     protected $clients;
@@ -60,7 +59,6 @@ class Chat implements MessageComponentInterface
                 // store the message in the DB
                 message::create([
                     "text" => $msg->msg,
-                    "time" => $msg->date,
                     "sender" => $msg->user_id,
                     "receiver" => $msg->receiver]);
                 break;
